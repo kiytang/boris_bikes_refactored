@@ -21,7 +21,11 @@ class Bike
 			# and any instance method can update them
 			@broken = true
 		end
-		
+
+		def fix
+			@broken = false
+		end
+
 end
 
 
