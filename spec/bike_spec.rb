@@ -1,5 +1,5 @@
 #link to the Bike class
-require_relative "../lib/bike"
+require "./lib/bike"
 
 # we are describing the functionality of a specific class, Bike
 describe Bike do
