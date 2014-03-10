@@ -22,4 +22,16 @@ class Van
     source.release(bike)
     self.dock(bike)
   end
+
+  def take_bikes_to(destination)
+    self.bikes.each do |bike|
+      move_bike_to(bike, destination)   
+    end
+  end
+
+  def move_bike_to(bike, destination)
+    self.release(bike)
+    destination.dock(bike)
+  end
+
 end

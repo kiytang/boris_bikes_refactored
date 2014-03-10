@@ -14,7 +14,8 @@ describe Van do
   let(:bike) {Bike.new}
   let(:holder) {ContainerHolder.new}
   let(:station) {DockingStation.new}
-  let (:van) {Van.new(:capacity => 15)}
+  let(:van) {Van.new(:capacity => 15)}
+  let(:garage) {Garage.new}
 
   def fill_van(van)
     van.capacity.times { van.dock(Bike.new) }
@@ -37,4 +38,21 @@ describe Van do
     fill_van van
     expect{ van.dock(bike)}.to raise_error(RuntimeError) 
   end
+
+  it "should transfer broken bikes to garage" do
+    broken_bike = Bike.new
+    broken_bike.break
+    van.dock(broken_bike)
+    expect{van.take_bikes_to(garage)}.to change {van.bike_count}.by -1  
+  end
+
+  it "should transfer fixed bikes to docking station" do
+    broken_bike = Bike.new
+    broken_bike.break
+    garage.dock(broken_bike)
+    expect{van.pick_up_from(garage, false)}.to change {garage.bike_count}.by -1
+  end
 end
+
+
+
