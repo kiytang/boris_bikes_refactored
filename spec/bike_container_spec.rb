@@ -70,12 +70,12 @@ describe BikeContainer do
 		expect(holder.broken_bikes).to eq([broken_bike])	
 	end
 
-	it "should only pick up broken bikes from station" do
-    working_bike, broken_bike = Bike.new, Bike.new
-    broken_bike.break
-    station.dock(working_bike)
-    station.dock(broken_bike)
-    expect {van.pick_up_from(station)}.to change {van.bike_count}.by 1
-    expect(van.bikes).to eq ([broken_bike])
-  end
+	# it "should only pick up broken bikes from station" do
+ #    working_bike, broken_bike = Bike.new, Bike.new
+ #    broken_bike.break
+ #    station.dock(working_bike)
+ #    station.dock(broken_bike)
+ #    expect {van.pick_up_from(station)}.to change {van.bike_count}.by 1
+ #    expect(van.bikes).to eq ([broken_bike])
+ #  end
 end
