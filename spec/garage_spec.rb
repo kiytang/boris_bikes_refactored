@@ -1,6 +1,5 @@
 require "garage"
 
-
 describe Garage do
   
   let(:bike) {Bike.new}

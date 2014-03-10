@@ -1,4 +1,8 @@
 require "bike_container"
+require "bike"
+require "van"
+require "garage"
+require "docking_station"
 
 class ContainerHolder; include BikeContainer; end
 
@@ -6,6 +10,8 @@ describe BikeContainer do
 
 	let(:bike) { Bike.new }
 	let(:holder) { ContainerHolder.new }
+	let(:station) {DockingStation.new}
+	let(:van) {Van.new}
 
 	def fill_holder(holder)
 		holder.capacity.times { holder.dock(Bike.new) }
@@ -48,7 +54,7 @@ describe BikeContainer do
 		expect{ holder.dock(bike) }.to raise_error(RuntimeError)
 	end
 
-	it "should provide the list of available bikes" do
+	it "should provide a list of available bikes" do
 		working_bike, broken_bike = Bike.new, Bike.new
 		broken_bike.break
 		holder.dock(working_bike)
@@ -56,7 +62,7 @@ describe BikeContainer do
 		expect(holder.available_bikes).to eq([working_bike])
 	end
 
-	it "should provide the list of broken bikes" do
+	it "should provide a list of broken bikes" do
 		working_bike, broken_bike = Bike.new, Bike.new
 		broken_bike.break
 		holder.dock(working_bike)
@@ -64,4 +70,12 @@ describe BikeContainer do
 		expect(holder.broken_bikes).to eq([broken_bike])	
 	end
 
+	it "should only pick up broken bikes from station" do
+    working_bike, broken_bike = Bike.new, Bike.new
+    broken_bike.break
+    station.dock(working_bike)
+    station.dock(broken_bike)
+    expect {van.pick_up_from(station)}.to change {van.bike_count}.by 1
+    expect(van.bikes).to eq ([broken_bike])
+  end
 end
