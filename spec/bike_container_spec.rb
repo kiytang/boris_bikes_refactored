@@ -1,4 +1,4 @@
-require "./lib/bike_container"
+require "bike_container"
 
 class ContainerHolder; include BikeContainer; end
 
@@ -7,6 +7,10 @@ describe BikeContainer do
 	let(:bike) { Bike.new }
 	let(:holder) { ContainerHolder.new }
 
+	def fill_holder(holder)
+		holder.capacity.times { holder.dock(Bike.new) }
+	end
+	
 	it "should accept a bike" do
 		#we expect the holder to have 0 bikes
 		expect(holder.bike_count).to eq(0)
@@ -39,11 +43,6 @@ describe BikeContainer do
 		holder.dock(working_bike)
 		holder.dock(broken_bike)
 		expect(holder.available_bikes).to eq([working_bike])
-	end
-
-
-	def fill_holder(holder)
-		holder.capacity.times { holder.dock(Bike.new) }
 	end
 
 end

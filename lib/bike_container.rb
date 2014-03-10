@@ -20,11 +20,14 @@ module BikeContainer
 
 	def dock(bike)
 		#if capacity is reached, raise and exception
-		raise "Station is full" if full?
+		raise "Container is full" if full?
 		bikes << bike
 	end
 
+	# What if we try to release a bike that's not there? What if we pass an empty argument? What if we pass an argument that is not a bike at all?
 	def release(bike)
+		raise "I do not hold this bike" unless bikes.include?(bike)
+		raise "Item is not a bike" unless bike.instance_of?(Bike) 
 		bikes.delete(bike)
 	end	
 
