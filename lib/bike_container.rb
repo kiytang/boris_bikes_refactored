@@ -21,6 +21,7 @@ module BikeContainer
 	def dock(bike)
 		#if capacity is reached, raise and exception
 		raise "Container is full" if full?
+		raise "This is not a bike"unless bike.instance_of?(Bike)
 		bikes << bike
 	end
 
@@ -33,6 +34,10 @@ module BikeContainer
 
 	def full?
 		bike_count == @capacity
+	end
+
+	def method_name
+		bike_count == 0
 	end
 
 	def available_bikes
