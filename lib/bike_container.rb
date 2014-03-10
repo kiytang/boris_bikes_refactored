@@ -36,8 +36,8 @@ module BikeContainer
 		bike_count == @capacity
 	end
 
-	def method_name
-		bike_count == 0
+	def empty?
+	 	bike_count == 0
 	end
 
 	def available_bikes
