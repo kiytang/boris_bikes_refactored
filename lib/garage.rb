@@ -8,8 +8,7 @@ class Garage
       super
     end
 
-    # bike.fix if bike.broken?
-    # super
+    # bike.fix if bike.broken? 
   end
 
   def default_capacity

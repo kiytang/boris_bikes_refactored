@@ -3,9 +3,9 @@ require 'bike_container'
 
 class DockingStation
 
-	include BikeContainer
+  include BikeContainer
 
-	def default_capacity
-		30
-	end
+  def default_capacity
+    30
+  end
 end
