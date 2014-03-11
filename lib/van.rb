@@ -6,9 +6,9 @@ class Van
   
   include BikeContainer
 
-  def initialize(options = {})
-    self.capacity = options.fetch(:capacity, capacity)
-  end  
+  def default_capacity
+    15
+  end
 
   def pick_up_from(site, only_broken=true)
     bikes_to_move = only_broken ? site.broken_bikes : site.available_bikes
@@ -20,17 +20,19 @@ class Van
   
   def get_bike_from(bike, source)
     source.release(bike)
-    self.dock(bike)
+    dock(bike)
   end
 
   def take_bikes_to(destination)
-    self.bikes.each do |bike|
+    bikes.each do |bike|
       move_bike_to(bike, destination)   
     end
   end
 
+  private
+
   def move_bike_to(bike, destination)
-    self.release(bike)
+    release(bike)
     destination.dock(bike)
   end
 

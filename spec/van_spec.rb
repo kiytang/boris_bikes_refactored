@@ -14,7 +14,7 @@ describe Van do
   let(:bike) {Bike.new}
   let(:holder) {ContainerHolder.new}
   let(:station) {DockingStation.new}
-  let(:van) {Van.new(:capacity => 15)}
+  let(:van) {Van.new}
   let(:garage) {Garage.new}
 
   def fill_van(van)

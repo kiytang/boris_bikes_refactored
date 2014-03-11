@@ -1,7 +1,7 @@
 class Bike
 
   def initialize
-    fix
+    # fix
   end
 
   def broken?

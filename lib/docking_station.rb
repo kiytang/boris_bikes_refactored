@@ -5,8 +5,7 @@ class DockingStation
 
 	include BikeContainer
 
-	def initialize(options = {})
-		self.capacity = options.fetch(:capacity, capacity)
+	def default_capacity
+		30
 	end
-
 end
